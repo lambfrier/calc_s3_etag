@@ -25,5 +25,5 @@ $ calc_s3_mp_etag -chunksize=15 10M
 I wanted to validate before cleaning up the local sources of archiving done using AWS's StorageGateway utility.
 
 As per the StackPeople have figured out AWS calculates S3 file Etag metadata by MD5 summing the MD5 sums of each multi-part part uploaded.  There is an existing Bash script + other scripts as answers to the question, but I decided I wanted a compiled program, and thought this may come in useful for others.  2 problems I encountered with the Go function posted by r03 included:
-1. it assumed files under the chunk size were uploaded non-multipart - StorageGateway doesn't appear to do this and uses multi-part for everything (with the default 8MB chunk size)
+1. it assumed files under the chunk size were uploaded non-multipart - StorageGateway doesn't appear to do this and uses multi-part for everything (with the (default 8MB)[https://docs.aws.amazon.com/cli/latest/topic/s3-config.html#multipart-chunksize] chunk size)
 2. it reads the whole file into memory and can crash due to this
